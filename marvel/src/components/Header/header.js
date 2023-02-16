@@ -9,7 +9,7 @@ export default function Header() {
         Inicio
       </Link>
       <Link className="favoritos" to="favoritos">
-        Meus Heróis Marvel
+        Meus HQs Marvel
       </Link>
       <div className="search-bar">
         <div className="icons">
