@@ -1,23 +1,23 @@
-.lista-filmes{
+.lista-quadros{
   max-width: 800px;
   margin: 14px auto;
 }
 
-.lista-filmes article{
+.lista-quadros article{
   width: 100%;
   background-color: #FFF;
   padding: 15px;
   border-radius: 4px;
 }
 
-.lista-filmes strong{
+.lista-quadros strong{
   margin-bottom: 14px;
   text-align: center;
   font-size: 22px;
   display: block;
 }
 
-.lista-filmes img{
+.lista-quadros img{
   width: 900px;
   max-width: 100%;
   max-height: 340px;
@@ -27,7 +27,7 @@
   border-top-right-radius: 8px;
 }
 
-.lista-filmes a{
+.lista-quadros a{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,3 +46,4 @@
   align-items: center;
   margin-top: 14px;
 }
+

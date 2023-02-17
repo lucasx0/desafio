@@ -1,34 +1,50 @@
-import React, { useEffect } from 'react';
-
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Api from '../../services/api';
+import './home.css';
 
 export default function Home() {
+  const [characters, setCharacters] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     async function loadM() {
       const response = await Api.get();
-      console.log(response);
+      //console.log(response);
+      setCharacters(response.data.data.results);
+      //console.log(response.data.data.results);
+      setCharacters(response.data.data.results.slice(0, 10));
     }
+
+    setLoading(false);
 
     loadM();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="loading">
+        <h2>Carregando ...</h2>
+      </div>
+    );
+  }
+
   return (
     <div className="container">
-      {/*  <div className="lista-filmes">
-        {filmes.map((filme) => {
+      <div className="lista-quadros">
+        {characters.map((char) => {
           return (
-            <article key={filme.id}>
-              <strong>{filme.title}</strong>
+            <article key={char.id}>
+              <strong>{char.name}</strong>
               <img
-                src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`}
-                alt={filme.title}
+                src={`${char.thumbnail.path}.${char.thumbnail.extension}`}
+                alt={`Foto do ${char.name}`}
               />
-              <Link to={`/filme/${filme.id}`}>Acessar</Link>
+              <Link to={`/quadros/${char.id}`}>Acessar</Link>
             </article>
           );
         })}
-      </div> */}
-      marvel
+      </div>
     </div>
   );
 }
