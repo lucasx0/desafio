@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header/header';
 //pages
 import Home from './pages/Home/home';
+import Quadros from './pages/Quadros/quadros';
+import Favoritos from './pages/Favoritos/favoritos';
 
 export default function RoutesApp() {
   return (
@@ -10,6 +12,8 @@ export default function RoutesApp() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/quadros/id" element={<Quadros />} />
+        <Route path="/favoritos" element={<Favoritos />} />
       </Routes>
     </BrowserRouter>
   );
