@@ -5,6 +5,7 @@ import Header from './components/Header/header';
 import Home from './pages/Home/home';
 import Quadros from './pages/Quadros/quadros';
 import Favoritos from './pages/Favoritos/favoritos';
+import Erro from './pages/Erro/error';
 
 export default function RoutesApp() {
   return (
@@ -12,8 +13,10 @@ export default function RoutesApp() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/quadros/id" element={<Quadros />} />
+        <Route path="/quadros/:id" element={<Quadros />} />
         <Route path="/favoritos" element={<Favoritos />} />
+
+        <Route path="*" element={<Erro />} />
       </Routes>
     </BrowserRouter>
   );
