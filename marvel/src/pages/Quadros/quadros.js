@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Api from '../../services/api';
+import { getCharacter } from '../../services/characterAPI';
 
 export default function Quadros() {
   const { name } = useParams();
@@ -9,11 +9,9 @@ export default function Quadros() {
   const [quadros, setQuadros] = useState({});
   const [loading, setLoading] = useState(true);
 
-  console.log(name);
-
   useEffect(() => {
     async function loadQuadros() {
-      await Api.get(`&name=${name}`)
+      await getCharacter(name)
         .then((response) => {
           setQuadros(response.data.data);
           setLoading(false);
@@ -30,7 +28,7 @@ export default function Quadros() {
     };
   }, [navigate, name]);
 
-  function salvarQuadrose() {
+  function salvarQuadros() {
     const meusQuadros = localStorage.get('@QuadrosMarvel');
 
     let quadrosSalvos = JSON.parse(meusQuadros) || [];
@@ -55,7 +53,7 @@ export default function Quadros() {
     }
     return (
       <div className="quadros-info">
-        <h1>{quadros.title}</h1>
+        <h1>oiiiiiiiiiiiiii</h1>
         <img
           src={`${quadros.thumbnail.path}.${quadros.thumbnail.extension}`}
           alt={quadros.title}
@@ -64,7 +62,7 @@ export default function Quadros() {
         <span>{quadros.overview}</span>
 
         <div className="area-buttons">
-          <button onClick={salvarQuadrose}>Salvar</button>
+          <button onClick={salvarQuadros}>Salvar</button>
           <button>
             <a
               target="blank"

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Api from '../../services/api';
+import { getAllCharacter } from '../../services/characterAPI';
 import './home.css';
 
 export default function Home() {
@@ -9,11 +9,18 @@ export default function Home() {
 
   useEffect(() => {
     async function loadM() {
-      const response = await Api.get();
-      //console.log(response);
-      setCharacters(response.data.data.results);
-      //console.log(response.data.data.results);
-      setCharacters(response.data.data.results.slice(0, 10));
+      try {
+        const response = await getAllCharacter();
+
+        if (response) {
+          console.log(response);
+          setCharacters(response.data.results);
+          //console.log(response.data.data.results);
+          setCharacters(response.data.results.slice(0, 10));
+        }
+      } catch (err) {
+        console.log(err);
+      }
     }
 
     setLoading(false);
@@ -40,7 +47,7 @@ export default function Home() {
                 src={`${char.thumbnail.path}.${char.thumbnail.extension}`}
                 alt={`Foto do ${char.name}`}
               />
-              <Link to={`quadros${char.name}`}>Acessar</Link>
+              <Link to={`quadros/${char.name}`}>Acessar</Link>
             </article>
           );
         })}
