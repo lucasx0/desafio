@@ -26,7 +26,7 @@ export default function Quadros() {
   }, [name, navigate]);
 
   function salvarQuadros() {
-    const meusQuadros = localStorage.getItem('@QuadrosMarvel');
+    const meusQuadros = localStorage.get('@QuadrosMarvel');
 
     let quadrosSalvos = JSON.parse(meusQuadros) || [];
 
@@ -40,14 +40,6 @@ export default function Quadros() {
     quadrosSalvos.push(quadros);
     localStorage.setItem('QuadrosMarvel', JSON.stringify(quadrosSalvos));
     alert('quadrinhos salvos com sucesso.');
-  }
-
-  if (loading) {
-    return (
-      <div className="quadros-info">
-        <h1>Carregando detalhes..</h1>
-      </div>
-    );
   }
 
   return (

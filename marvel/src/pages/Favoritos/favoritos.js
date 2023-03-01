@@ -1,3 +1,46 @@
+import './favoritos.css';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 export default function Favoritos() {
-  return <div>Favoritos</div>;
+  const [quadros, setQuadros] = useState([]);
+
+  useEffect(() => {
+    const minhaLista = localStorage.getItem('@QuadrosMarvel');
+    setQuadros(JSON.parse(minhaLista) || []);
+  }, []);
+
+  function excluirQuadro(name) {
+    let filtroQuadros = quadros.filter((item) => {
+      return item.name !== name;
+    });
+
+    setQuadros(filtroQuadros);
+    localStorage.setItem('@QuadrosMarvel', JSON.stringify(filtroQuadros));
+    alert('Filme removido com Sucesso');
+  }
+
+  return (
+    <div className="meus-filmes">
+      <h1>Meus Quadros</h1>
+      {quadros.length === 0 && (
+        <span>Você não possui nenhum quadro Salvo.</span>
+      )}
+      <ul>
+        {quadros.map((quadro) => {
+          return (
+            <li key={quadro.id}>
+              <span>{quadro.title}</span>
+              <div>
+                <Link>Ver Detalhes</Link>
+                <button onClick={() => excluirQuadro(quadro.name)}>
+                  Excluir
+                </button>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 }
