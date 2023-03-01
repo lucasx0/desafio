@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getCharacter } from '../../services/characterAPI';
+import './quadros.css';
 
 export default function Quadros() {
   const { name } = useParams();
@@ -13,7 +14,7 @@ export default function Quadros() {
     async function loadQuadros() {
       await getCharacter(name)
         .then((response) => {
-          setQuadros(response.data.data);
+          setQuadros(response.data.results[0]);
           setLoading(false);
         })
         .catch(() => {
@@ -22,11 +23,7 @@ export default function Quadros() {
         });
     }
     loadQuadros();
-
-    return () => {
-      console.log('componente desmontado');
-    };
-  }, [navigate, name]);
+  }, [name, navigate]);
 
   function salvarQuadros() {
     const meusQuadros = localStorage.get('@QuadrosMarvel');
@@ -34,7 +31,7 @@ export default function Quadros() {
     let quadrosSalvos = JSON.parse(meusQuadros) || [];
 
     const hasQuadros = quadrosSalvos.some(
-      (quadrosSalvos) => quadrosSalvos.id === quadros.id,
+      (quadrosSalvos) => quadrosSalvos.name === quadros.name,
     );
     if (hasQuadros) {
       alert('esse quadro está na sua lista!');
@@ -51,29 +48,23 @@ export default function Quadros() {
         </div>
       );
     }
-    return (
-      <div className="quadros-info">
-        <h1>oiiiiiiiiiiiiii</h1>
-        <img
-          src={`${quadros.thumbnail.path}.${quadros.thumbnail.extension}`}
-          alt={quadros.title}
-        />
-        <h3>Sinopse</h3>
-        <span>{quadros.overview}</span>
-
-        <div className="area-buttons">
-          <button onClick={salvarQuadros}>Salvar</button>
-          <button>
-            <a
-              target="blank"
-              rel="external"
-              href={`https://youtube.com/results?search_query=${quadros.title} Trailer`}
-            >
-              Trailer
-            </a>
-          </button>
-        </div>
-      </div>
-    );
   }
+  return (
+    <div className="quadros-info">
+      <h1>{quadros.name}</h1>
+
+      <div className="area-buttons">
+        <button onClick={salvarQuadros}>Salvar</button>
+        <button>
+          <a
+            target="blank"
+            rel="external"
+            href={`https://youtube.com/results?search_query=${quadros.name} Marvel`}
+          >
+            Quadros
+          </a>
+        </button>
+      </div>
+    </div>
+  );
 }

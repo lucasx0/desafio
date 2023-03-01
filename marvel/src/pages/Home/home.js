@@ -13,7 +13,6 @@ export default function Home() {
         const response = await getAllCharacter();
 
         if (response) {
-          console.log(response);
           setCharacters(response.data.results);
           //console.log(response.data.data.results);
           setCharacters(response.data.results.slice(0, 10));
