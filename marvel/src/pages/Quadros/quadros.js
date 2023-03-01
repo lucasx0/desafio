@@ -26,7 +26,7 @@ export default function Quadros() {
   }, [name, navigate]);
 
   function salvarQuadros() {
-    const meusQuadros = localStorage.get('@QuadrosMarvel');
+    const meusQuadros = localStorage.getItem('@QuadrosMarvel');
 
     let quadrosSalvos = JSON.parse(meusQuadros) || [];
 
@@ -47,10 +47,6 @@ export default function Quadros() {
       <h1>{quadros.name}</h1>
 
       <div className="area-buttons">
-        <img
-          src={`${quadros.thumbnail.path}.${quadros.thumbnail.extension}`}
-          alt=""
-        />
         <button onClick={salvarQuadros}>Salvar</button>
 
         <button>
