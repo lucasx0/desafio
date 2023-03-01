@@ -40,7 +40,7 @@ export default function Home() {
                 src={`${char.thumbnail.path}.${char.thumbnail.extension}`}
                 alt={`Foto do ${char.name}`}
               />
-              <Link to={`quadros/${char.id}`}>Acessar</Link>
+              <Link to={`quadros${char.name}`}>Acessar</Link>
             </article>
           );
         })}

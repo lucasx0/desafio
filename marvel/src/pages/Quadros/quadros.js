@@ -3,15 +3,17 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Api from '../../services/api';
 
 export default function Quadros() {
-  const { id } = useParams();
+  const { name } = useParams();
   const navigate = useNavigate();
 
   const [quadros, setQuadros] = useState({});
   const [loading, setLoading] = useState(true);
 
+  console.log(name);
+
   useEffect(() => {
     async function loadQuadros() {
-      await Api.get(`${id}`)
+      await Api.get(`&name=${name}`)
         .then((response) => {
           setQuadros(response.data.data);
           setLoading(false);
@@ -26,9 +28,9 @@ export default function Quadros() {
     return () => {
       console.log('componente desmontado');
     };
-  }, [navigate, id]);
+  }, [navigate, name]);
 
-  function salvarQuadros() {
+  function salvarQuadrose() {
     const meusQuadros = localStorage.get('@QuadrosMarvel');
 
     let quadrosSalvos = JSON.parse(meusQuadros) || [];
@@ -62,7 +64,7 @@ export default function Quadros() {
         <span>{quadros.overview}</span>
 
         <div className="area-buttons">
-          <button onClick={salvarQuadros}>Salvar</button>
+          <button onClick={salvarQuadrose}>Salvar</button>
           <button>
             <a
               target="blank"

@@ -13,7 +13,7 @@ export default function RoutesApp() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/quadros/:id" element={<Quadros />} />
+        <Route path="/quadros/:name" element={<Quadros />} />
         <Route path="/favoritos" element={<Favoritos />} />
 
         <Route path="*" element={<Erro />} />
