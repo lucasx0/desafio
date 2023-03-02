@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getCharacter } from '../../services/characterAPI';
+import { toast } from 'react-toastify';
 import './quadros.css';
 
 export default function Quadros() {
@@ -32,12 +33,12 @@ export default function Quadros() {
       (quadrosSalvos) => quadrosSalvos.name === quadros.name,
     );
     if (hasQuadros) {
-      alert('esse quadro está na sua lista!');
+      toast.warn('Esse HQ já está na sua lista!');
       return;
     }
     quadrosSalvos.push(quadros);
     localStorage.setItem('@QuadrosMarvel', JSON.stringify(quadrosSalvos));
-    alert('quadrinhos salvos com sucesso.');
+    toast.success('Filme salvo com Sucesso!');
   }
 
   return (
@@ -57,7 +58,7 @@ export default function Quadros() {
             rel="external"
             href={`https://youtube.com/results?search_query=${quadros.name} Marvel`}
           >
-            Quadros
+            Veja no Youtube
           </a>
         </button>
       </div>

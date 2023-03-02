@@ -1,6 +1,6 @@
 import './favoritos.css';
 import { useEffect, useState } from 'react';
-
+import { toast } from 'react-toastify';
 export default function Favoritos() {
   const [quadros, setQuadros] = useState([]);
 
@@ -18,15 +18,13 @@ export default function Favoritos() {
 
     setQuadros(filtroQuadros);
     localStorage.setItem('@QuadrosMarvel', JSON.stringify(filtroQuadros));
-    alert('Filme removido com Sucesso');
+    toast.error('HQ removido com Sucesso');
   }
 
   return (
     <div className="meus-quadros">
-      <h1>Meus Quadros</h1>
-      {quadros.length === 0 && (
-        <span>Você não possui nenhum quadro Salvo.</span>
-      )}
+      <h1>Meus HQs</h1>
+      {quadros.length === 0 && <span>Você não possui nenhum HQ Salvo.</span>}
       <ul>
         {quadros.map((quadro) => {
           return (
