@@ -8,14 +8,12 @@ export default function Quadros() {
   const navigate = useNavigate();
 
   const [quadros, setQuadros] = useState({});
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadQuadros() {
       await getCharacter(name)
         .then((response) => {
           setQuadros(response.data.results[0]);
-          setLoading(false);
         })
         .catch(() => {
           navigate('/', { replace: true });
@@ -38,7 +36,7 @@ export default function Quadros() {
       return;
     }
     quadrosSalvos.push(quadros);
-    localStorage.setItem('QuadrosMarvel', JSON.stringify(quadrosSalvos));
+    localStorage.setItem('@QuadrosMarvel', JSON.stringify(quadrosSalvos));
     alert('quadrinhos salvos com sucesso.');
   }
 
@@ -47,6 +45,10 @@ export default function Quadros() {
       <h1>{quadros.name}</h1>
 
       <div className="area-buttons">
+        <img
+          src={`${quadros?.thumbnail?.path}.${quadros?.thumbnail?.extension}`}
+          alt=""
+        />
         <button onClick={salvarQuadros}>Salvar</button>
 
         <button>

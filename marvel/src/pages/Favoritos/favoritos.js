@@ -1,6 +1,5 @@
 import './favoritos.css';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 export default function Favoritos() {
   const [quadros, setQuadros] = useState([]);
@@ -8,6 +7,8 @@ export default function Favoritos() {
   useEffect(() => {
     const minhaLista = localStorage.getItem('@QuadrosMarvel');
     setQuadros(JSON.parse(minhaLista) || []);
+    console.log(minhaLista);
+    console.log(setQuadros);
   }, []);
 
   function excluirQuadro(name) {
@@ -21,7 +22,7 @@ export default function Favoritos() {
   }
 
   return (
-    <div className="meus-filmes">
+    <div className="meus-quadros">
       <h1>Meus Quadros</h1>
       {quadros.length === 0 && (
         <span>Você não possui nenhum quadro Salvo.</span>
@@ -30,9 +31,9 @@ export default function Favoritos() {
         {quadros.map((quadro) => {
           return (
             <li key={quadro.id}>
-              <span>{quadro.title}</span>
+              <span>{quadro.name}</span>
+
               <div>
-                <Link>Ver Detalhes</Link>
                 <button onClick={() => excluirQuadro(quadro.name)}>
                   Excluir
                 </button>

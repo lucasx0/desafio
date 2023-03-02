@@ -1,0 +1,40 @@
+.meus-quadros{
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.meus-quadros h1{
+  margin-bottom: 14px;
+}
+
+.meus-quadros span{
+  font-size: 18px;
+}
+
+.meus-quadros ul{
+  width: 720px;
+}
+
+.meus-quadros ul li{
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  
+  
+}
+
+.meus-quadros div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.meus-quadros div a {
+  text-decoration: none;
+  color: blue;
+  padding: 10px;
+}
